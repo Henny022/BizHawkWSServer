@@ -24,6 +24,8 @@
         <Copy SourceFiles="$(OutputPath)$(MSBuildProjectName).dll" DestinationFolder="$(BIZHAWK_DATA_HOME)ExternalTools"/>
         <Copy SourceFiles="$(OutputPath)System.Threading.Channels.dll" DestinationFolder="$(BIZHAWK_DATA_HOME)ExternalTools"/>
         <Copy SourceFiles="$(OutputPath)System.Threading.Tasks.Extensions.dll" DestinationFolder="$(BIZHAWK_DATA_HOME)ExternalTools"/>
+        <Copy SourceFiles="$(OutputPath)System.Threading.Channels.dll" DestinationFolder="$(BIZHAWK_DATA_HOME)dll"/>
+        <Copy SourceFiles="$(OutputPath)System.Threading.Tasks.Extensions.dll" DestinationFolder="$(BIZHAWK_DATA_HOME)dll"/>
     </Target>
 </Project>
 

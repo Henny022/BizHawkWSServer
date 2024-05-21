@@ -37,8 +37,6 @@ class WSServer
 
             if (Regex.IsMatch(s, "^GET", RegexOptions.IgnoreCase))
             {
-                Console.WriteLine("=====Handshaking from client=====\n{0}", s);
-
                 // 1. Obtain the value of the "Sec-WebSocket-Key" request header without any leading or trailing whitespace
                 // 2. Concatenate it with "258EAFA5-E914-47DA-95CA-C5AB0DC85B11" (a special GUID specified by RFC 6455)
                 // 3. Compute SHA-1 and Base64 hash of the new value
@@ -63,10 +61,10 @@ class WSServer
         }
     }
 
-    public static (ChannelReader<string>, ChannelWriter<string>) Spawn(string ip, int port)
+    public static (ChannelReader<byte[]>, ChannelWriter<byte[]>) Spawn(string ip, int port)
     {
-        var rx = Channel.CreateUnbounded<string>();
-        var tx = Channel.CreateUnbounded<string>();
+        var rx = Channel.CreateUnbounded<byte[]>();
+        var tx = Channel.CreateUnbounded<byte[]>();
 
         var task = Task.Run(() =>
         {
@@ -74,7 +72,7 @@ class WSServer
             while (true)
             {
                 var connection = server.Accept();
-                connection.Run(text => { rx.Writer.TryWrite(text); }, binary => { });
+                connection.Run(text => { }, binary => { rx.Writer.TryWrite(binary); });
             }
         });
 
