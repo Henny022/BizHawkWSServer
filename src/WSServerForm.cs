@@ -7,7 +7,8 @@ namespace de.henny022.WSServerTool;
 
 using BizHawk.Client.Common;
 
-[ExternalTool("WSServer", LoadAssemblyFiles = new[] { "ExternalTools/System.Threading.Channels.dll" })]
+[ExternalTool("WSServer",
+    LoadAssemblyFiles = new[] { "System.Threading.Tasks.Extensions.dll", "System.Threading.Channels.dll" })]
 public sealed class WSServerForm : ToolFormBase, IExternalToolForm
 {
     protected override string WindowTitleStatic => "WSServer";

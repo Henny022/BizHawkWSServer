@@ -12,7 +12,7 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all"/>
-        <PackageReference Include="System.Threading.Channels" Version="4.7.1"/>
+        <PackageReference Include="System.Threading.Channels" Version="8.0.0"/>
         <Reference Include="System.Windows.Forms"/>
         <Reference Include="BizHawk.Client.Common" HintPath="$(BIZHAWK_HOME)dll/BizHawk.Client.Common.dll"/>
         <Reference Include="BizHawk.Client.EmuHawk" HintPath="$(BIZHAWK_HOME)EmuHawk.exe"/>
@@ -23,6 +23,7 @@
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="$(OutputPath)$(MSBuildProjectName).dll" DestinationFolder="$(BIZHAWK_DATA_HOME)ExternalTools"/>
         <Copy SourceFiles="$(OutputPath)System.Threading.Channels.dll" DestinationFolder="$(BIZHAWK_DATA_HOME)ExternalTools"/>
+        <Copy SourceFiles="$(OutputPath)System.Threading.Tasks.Extensions.dll" DestinationFolder="$(BIZHAWK_DATA_HOME)ExternalTools"/>
     </Target>
 </Project>
 
